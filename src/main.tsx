@@ -22,7 +22,7 @@ const router = createBrowserRouter([
 	{
 		path: '/properties',
 		element: <Properties />,
-		errorElement: <Error />,
+		// errorElement: <Error />,
 	},
 	{
 		path: '/properties/:propertyId',

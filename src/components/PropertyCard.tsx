@@ -32,7 +32,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
 							src={image}
 							alt=""
 							key={index}
-							className="embla__slide w-full h-full object-cover rounded-md"
+							className="embla__slide w-full max-h-[250px] object-cover rounded-md"
 						/>
 					))}
 				</div>

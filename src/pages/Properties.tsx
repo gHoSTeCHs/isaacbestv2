@@ -1,34 +1,71 @@
-// import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// import L from "leaflet";
-// import icon from "@/assets/icons/icon.png";
 import PropertyCard from '@/components/PropertyCard';
 import CTA from '@/components/sections/CTA';
 import Footer from '@/components/sections/Footer';
 import NavBar from '@/components/sections/NavBar';
 import Header from '@/components/ui/header';
 import PropertySearch from '@/components/ui/propertysearch';
-import { PropertyData } from '@/constants/data';
-import { Link } from 'react-router-dom';
+import { database, storage } from '@/hooks/appwrite';
+import { useEffect, useState } from 'react';
 
-// import { PropertyData } from "@/constants/data";
-// import Card from "@/components/card";
-
-// const getIcon = () => {
-//   return L.icon({
-//     iconUrl: icon, // Replace with your marker image path
-//     iconSize: [25, 21],
-//     iconAnchor: [12, 41],
-//     popupAnchor: [1, -34],
-//     shadowSize: [41, 41],
-//   });
-// };
+interface Files {
+	imgUrls: string[];
+	$id: string;
+	title: string;
+	description: string;
+	location: string;
+	price: string;
+	images: string[];
+	video?: string;
+}
 
 const Properties = () => {
+	const [loading, setLoading] = useState(false);
+	const [files, setFiles] = useState<Files[]>([]);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			setError(null);
+			try {
+				const response = await database.listDocuments(
+					'66c73f49002e7b7365a3',
+					'66c869070039e48ddbaf'
+				);
+				const docs = response.documents as unknown as Files[];
+
+				const docsWithImageUrls = await Promise.all(
+					docs.map(async (doc) => {
+						const imageUrls = await Promise.all(
+							doc.images.map(async (fileId) => {
+								const imageUrl = await storage.getFileView(
+									'66c75d710025bfd53abe',
+									fileId
+								);
+								return imageUrl.href;
+							})
+						);
+
+						return { ...doc, imgUrls: imageUrls };
+					})
+				);
+
+				setFiles(docsWithImageUrls);
+			} catch (error) {
+				console.error(error);
+				setError('Failed to load properties. Please try again later.');
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchData();
+	}, []);
 	return (
 		<div>
 			<NavBar />
 			<div className="container">
-				<section className=" py-12">
+				<section className="py-12">
 					<div className="cta flex flex-col justify-center gap-7 md:flex-row lg:justify-between lg:items-center">
 						<div className="max-w-[960px] pb-10">
 							<Header
@@ -51,26 +88,24 @@ const Properties = () => {
 						/>
 					</div>
 
-					<div
-						className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 
-          place-items-center">
-						{PropertyData.map((item, index) => {
-							return (
-								<Link
-									className="w-full"
-									to={`/properties/${index + 1}`}
-									key={index}>
-									<PropertyCard
-										title={item.title}
-										location={item.location}
-										price={item.price}
-										images={item.image}
-										description={item.description}
-									/>
-								</Link>
-							);
-						})}
-					</div>
+					{loading ? (
+						<p>Loading..</p>
+					) : error ? (
+						<p className="text-red-500">{error}</p>
+					) : (
+						<div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
+							{files.map((doc) => (
+								<PropertyCard
+									key={doc.$id}
+									title={doc.title}
+									location={doc.location}
+									price={doc.price}
+									images={doc.imgUrls}
+									description={doc.description}
+								/>
+							))}
+						</div>
+					)}
 				</section>
 				<CTA />
 				<Footer />
@@ -80,33 +115,3 @@ const Properties = () => {
 };
 
 export default Properties;
-
-{
-	/* <MapContainer
-          center={[5.1035, 7.3655]}
-          zoom={13}
-          style={{ height: "500px", width: "100%" }}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          {PropertyData.map((property) => (
-            <Marker
-              key={property.id}
-              position={[property.latitude, property.longitude]}
-              icon={getIcon()}
-            >
-              <Popup closeButton={false} className="">
-                <Card
-                  title={property.title}
-                  location={property.location}
-                  price={property.price}
-                  images={property.image}
-                  description={property.description}
-                />
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer> */
-}
