@@ -23,6 +23,13 @@ const PropertyCard: React.FC<PropertyProps> = ({
 			// console.log(emblaApi.slideNodes()) // Access API
 		}
 	}, [emblaApi]);
+
+	let NGN = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'NGN',
+		maximumFractionDigits: 0,
+	});
+
 	return (
 		<div className="flex flex-col gap-6 border border-border max-w-[413px] py-5 px-4 rounded-lg lg:p-5">
 			<div className="embla" ref={emblaRef}>
@@ -38,19 +45,25 @@ const PropertyCard: React.FC<PropertyProps> = ({
 				</div>
 			</div>
 			<div className="flex flex-col gap-4">
-				<div className="inline-block bg-background-secondary border border-border rounded-full p-1 px-3">
-					<p className="text-sm md:text-base">{location}</p>
+				<div className="">
+					<p className="inline-block bg-background-secondary border border-border rounded-full text-sm md:text-base p-1 px-3">
+						{location}
+					</p>
 				</div>
 				<div className="flex flex-col gap-1">
 					<h2 className="text-lg md:text-xl font-semibold">{title}</h2>
-					<p className="text-txt text-sm md:text-base">{description}</p>
+					<p className="text-txt text-sm md:text-base line-clamp-2">
+						{description}
+					</p>
 				</div>
-				<div className="grid grid-cols-3 gap-4 mt-1">
-					<div>
+				<div className="grid grid-cols-9 gap-4 mt-1">
+					<div className="col-span-4">
 						<p className="text-txt text-sm">Price</p>
-						<h2 className="text-lg md:text-xl font-semibold">#{price}</h2>
+						<h2 className="text-lg md:text-xl font-semibold">
+							{NGN.format(parseInt(price))}
+						</h2>
 					</div>
-					<Button variant="secondary" className="col-span-2">
+					<Button variant="secondary" className="col-span-5">
 						View Details
 					</Button>
 				</div>

@@ -1,68 +1,137 @@
 import NavBar from '@/components/sections/NavBar';
-import { PropertyData } from '@/constants/data';
-import { Link, useParams } from 'react-router-dom';
 import ReactPlayer from 'react-player/youtube';
-import { Params } from 'react-router-dom';
 import { EmblaOptionsType } from 'embla-carousel';
 import EmblaCarousel from '@/components/ui/imgcarousel';
 import Header from '@/components/ui/header';
 import Button from '@/components/ui/button';
 import Footer from '@/components/sections/Footer';
 import CTA from '@/components/sections/CTA';
+import { Link, useParams } from 'react-router-dom';
+import { database, storage } from '@/hooks/appwrite';
+import { useEffect, useState } from 'react';
+import { Query } from 'appwrite';
+import { Loader } from 'lucide-react';
+
+interface File {
+	images: [];
+	title: string;
+	location: string;
+	price: string;
+	imgUrls: string[];
+	description: string;
+	amenities: string[];
+	bedrooms: string;
+	bathroom: string;
+	link: string;
+}
 
 const OPTIONS: EmblaOptionsType = {};
 
 const Property = () => {
-	const { propertyId } = useParams<Params<string>>();
+	// const [loading, setLoading] = useState(false);
+	const [property, setProperty] = useState<File | null>(null);
+	const [error, setError] = useState<string | null>(null);
+	const { title } = useParams<{ title: string }>();
 
-	const propertyData = PropertyData.find(
-		(item) => item.id === parseInt(propertyId || '')
-	);
-	const SLIDES = propertyData?.image || [];
+	const SLIDES = property?.imgUrls || [];
+	const decodedTitle = title ? decodeURIComponent(title) : '';
+
+	const fetchProperty = async () => {
+		// setLoading(true);
+		setProperty(null);
+		setError(null);
+
+		try {
+			const response = await database.listDocuments(
+				'66c73f49002e7b7365a3',
+				'66c869070039e48ddbaf',
+				[Query.equal('title', decodedTitle)]
+			);
+
+			if (response.documents.length === 0) {
+				setError('No property found with this title');
+				return;
+			}
+
+			const doc = response.documents[0] as unknown as File;
+
+			const imageUrls = await Promise.all(
+				doc.images.map(async (fileId) => {
+					const imageUrl = await storage.getFileView(
+						'66c75d710025bfd53abe',
+						fileId
+					);
+					return imageUrl.href;
+				})
+			);
+
+			setProperty({ ...doc, imgUrls: imageUrls });
+		} catch (error) {
+			setError('Failed to load property data');
+			setError(error as string);
+			console.error(error);
+		}
+	};
+
+	let NGN = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'NGN',
+		maximumFractionDigits: 0,
+	});
+
+	useEffect(() => {
+		if (decodedTitle) {
+			fetchProperty();
+		}
+	}, [decodedTitle]);
+
 	return (
 		<>
 			<NavBar />
 			<div className="container">
-				<div className="flex flex-col gap-3 py-5">
-					<h1 className="text-xl font-bold">{propertyData?.title}</h1>
-					<div className="flex gap-5 items-center">
-						<div className="inline-flex items-center gap-2 justify-start border border-border p-2 rounded-lg">
-							<Link to={'/'}>
-								<svg
-									width="14"
-									height="18"
-									viewBox="0 0 14 18"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg">
-									<path
-										fillRule="evenodd"
-										clipRule="evenodd"
-										d="M6.61646 17.1259C6.64163 17.1405 6.66141 17.1517 6.67542 17.1596L6.69869 17.1726C6.88441 17.2745 7.1148 17.2738 7.3007 17.1729L7.32458 17.1596C7.33859 17.1517 7.35837 17.1405 7.38354 17.1259C7.43388 17.0967 7.50581 17.0542 7.59625 16.9985C7.77705 16.8872 8.03229 16.723 8.33718 16.5076C8.94591 16.0776 9.75812 15.4395 10.5721 14.6061C12.1922 12.9474 13.875 10.4551 13.875 7.25C13.875 3.45304 10.797 0.375 7 0.375C3.20304 0.375 0.125 3.45304 0.125 7.25C0.125 10.4551 1.80777 12.9474 3.42788 14.6061C4.24188 15.4395 5.05409 16.0776 5.66282 16.5076C5.96771 16.723 6.22295 16.8872 6.40375 16.9985C6.49419 17.0542 6.56612 17.0967 6.61646 17.1259ZM7 9.75C8.38071 9.75 9.5 8.63071 9.5 7.25C9.5 5.86929 8.38071 4.75 7 4.75C5.61929 4.75 4.5 5.86929 4.5 7.25C4.5 8.63071 5.61929 9.75 7 9.75Z"
-										fill="white"
-									/>
-								</svg>
-							</Link>
+				{error && <p className="text-red-500">{error}</p>}
+				{property ? (
+					<>
+						<div className="flex flex-col gap-3 py-5">
+							<h1 className="text-xl font-bold">{property?.title}</h1>
+							<div className="flex gap-5 items-center">
+								<div className="inline-flex items-center gap-2 justify-start border border-border p-2 rounded-lg">
+									<Link to={'/'}>
+										<svg
+											width="14"
+											height="18"
+											viewBox="0 0 14 18"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg">
+											<path
+												fillRule="evenodd"
+												clipRule="evenodd"
+												d="M6.61646 17.1259C6.64163 17.1405 6.66141 17.1517 6.67542 17.1596L6.69869 17.1726C6.88441 17.2745 7.1148 17.2738 7.3007 17.1729L7.32458 17.1596C7.33859 17.1517 7.35837 17.1405 7.38354 17.1259C7.43388 17.0967 7.50581 17.0542 7.59625 16.9985C7.77705 16.8872 8.03229 16.723 8.33718 16.5076C8.94591 16.0776 9.75812 15.4395 10.5721 14.6061C12.1922 12.9474 13.875 10.4551 13.875 7.25C13.875 3.45304 10.797 0.375 7 0.375C3.20304 0.375 0.125 3.45304 0.125 7.25C0.125 10.4551 1.80777 12.9474 3.42788 14.6061C4.24188 15.4395 5.05409 16.0776 5.66282 16.5076C5.96771 16.723 6.22295 16.8872 6.40375 16.9985C6.49419 17.0542 6.56612 17.0967 6.61646 17.1259ZM7 9.75C8.38071 9.75 9.5 8.63071 9.5 7.25C9.5 5.86929 8.38071 4.75 7 4.75C5.61929 4.75 4.5 5.86929 4.5 7.25C4.5 8.63071 5.61929 9.75 7 9.75Z"
+												fill="white"
+											/>
+										</svg>
+									</Link>
 
-							<p>{propertyData?.location}</p>
+									<p>{property?.location}</p>
+								</div>
+
+								<p className="font-bold text-xl">
+									<span className="text-sm text-txt font-normal mr-2">
+										Price
+									</span>
+									{/* {formatAmount('1798300000')} */}
+									{NGN.format(parseInt(property.price))}
+								</p>
+							</div>
 						</div>
 
-						<p className="font-bold text-xl">
-							<span className="text-sm text-txt font-normal mr-2">Price</span>$
-							{propertyData?.price}
-						</p>
-					</div>
-				</div>
+						<EmblaCarousel slides={SLIDES} options={OPTIONS} />
 
-				<EmblaCarousel slides={SLIDES} options={OPTIONS} />
-
-				{/* Handle case where propertyData is undefined */}
-				{propertyData ? (
-					<>
 						<div className="border border-border p-4 rounded-md mt-5">
 							<div className="flex flex-col gap-2">
 								<h1 className="font-bold text-lg">Description</h1>
 								<p className="text-txt text-sm font-medium mb-3">
-									{propertyData.description}
+									{property.description}
 								</p>
 							</div>
 							<div className="text-left flex gap-[30%]">
@@ -97,7 +166,7 @@ const Property = () => {
 										</svg>
 										<p className="text-txt text-sm font-medium">Bedrooms</p>
 									</div>
-									<h1 className="font-semibold text-lg">04</h1>
+									<h1 className="font-semibold text-lg">{property.bedrooms}</h1>
 								</div>
 								<div>
 									<div className="flex items-center gap-2 mb-1">
@@ -152,7 +221,7 @@ const Property = () => {
 										</svg>
 										<p className="text-txt text-sm font-medium"> Bathrooms</p>
 									</div>
-									<h1 className="font-semibold text-lg">03</h1>
+									<h1 className="font-semibold text-lg">{property.bathroom}</h1>
 								</div>
 							</div>
 						</div>
@@ -162,7 +231,7 @@ const Property = () => {
 								Key Features and Amenities
 							</h1>
 							<div className="flex flex-col gap-4">
-								{propertyData.amenities.map((amenity, index) => (
+								{property.amenities.map((amenity, index) => (
 									<div
 										key={index}
 										className="flex gap-4 items-center p-3 border border-l-btn border-r-0 border-t-0 border-b-0 bg-gradient-to-r from-background-secondary to-background-primary">
@@ -186,11 +255,11 @@ const Property = () => {
 						</div>
 
 						<div className="py-4 mt-4 rounded-md">
-							<ReactPlayer url="https://youtu.be/PGS2TgTNV78" width={'100%'} />
+							<ReactPlayer url={property.link} width={'100%'} />
 						</div>
 						<div className="py-9">
 							<Header
-								title="Inquire About Seaside Serenity Villa"
+								title={`Inquire About ${property.title}`}
 								description="Interested in this property? Fill out the form below, and our real estate experts will get back to you with more details, including scheduling a viewing and answering any questions you may have."
 								showAbstract={true}
 							/>
@@ -270,7 +339,9 @@ const Property = () => {
 						</div>
 					</>
 				) : (
-					<p>Property Video not Found not found.</p>
+					<div className="flex justify-center h-screen items-center">
+						<Loader className=" animate-spin w-8 h-8" />
+					</div>
 				)}
 			</div>
 			<CTA />

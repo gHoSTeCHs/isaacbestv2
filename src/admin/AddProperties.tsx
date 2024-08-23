@@ -65,9 +65,10 @@ const AddProperties = () => {
 		},
 	});
 
+	// @ts-ignore
 	const { fields, append, remove } = useFieldArray({
 		control,
-		name: 'amenities',
+		name: 'amenities' as string,
 	});
 
 	const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -6,6 +6,7 @@ import Header from '@/components/ui/header';
 import PropertySearch from '@/components/ui/propertysearch';
 import { database, storage } from '@/hooks/appwrite';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Files {
 	imgUrls: string[];
@@ -95,14 +96,18 @@ const Properties = () => {
 					) : (
 						<div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
 							{files.map((doc) => (
-								<PropertyCard
-									key={doc.$id}
-									title={doc.title}
-									location={doc.location}
-									price={doc.price}
-									images={doc.imgUrls}
-									description={doc.description}
-								/>
+								<Link
+									to={`/property/${encodeURIComponent(doc.title)}`}
+									key={doc.$id}>
+									<PropertyCard
+										key={doc.$id}
+										title={doc.title}
+										location={doc.location}
+										price={doc.price}
+										images={doc.imgUrls}
+										description={doc.description}
+									/>
+								</Link>
 							))}
 						</div>
 					)}
