@@ -1,0 +1,37 @@
+import { images } from "@/constants";
+import Button from "../ui/button";
+import Stats from "../Stats";
+import { Link } from "react-router-dom";
+
+const Hero = () => {
+  return (
+    <div className="container mx-auto mt-9">
+      <section className="md:flex md:flex-col-reverse md:items-center md:justify-center lg:flex-row-reverse">
+        <div className="border border-border rounded-lg overflow-hidden md:border-0">
+          <img src={images.building} alt="" />
+        </div>
+        <div>
+          <div className="mt-5 mb-7 md:w-[450px] md:text-center md:flex md:flex-col md:items-center md:jusitfy-center md:gap-2 md:mx-auto md:mt-2 lg:w-auto lg:text-left">
+            <h2 className="text-[28px] font-medium text-primary md:text-4xl lg:text-5xl">
+              Discover Your Dream Property with IsaacBest
+            </h2>
+            <p className="text-[14px] text-txt lg:text-[16px]">
+              Your journey to finding the perfect property begins here. Explore
+              our listings to find the home that matches your dreams.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 md:flex-row md:w-[400px] md:mx-auto md:items-center md:justify-center lg:w-auto lg:justify-start">
+            <Button>Learn More</Button>
+            <Button variant="secondary">
+              {" "}
+              <Link to={"/properties"}>Browse Properties</Link>
+            </Button>
+          </div>
+          <Stats />
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Hero;
