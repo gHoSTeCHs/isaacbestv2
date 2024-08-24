@@ -6,6 +6,7 @@ import Button from '@/components/ui/button';
 import { useState } from 'react';
 import { database, storage } from '@/hooks/appwrite';
 import { ID } from 'appwrite';
+// import { v4 as uuidv4 } from 'uuid';
 
 const MAX_FILE_SIZE = 5242880;
 const ALLOWED_FILE_TYPES = ['image/png', 'image/jpeg', 'image/jpg'];
@@ -19,7 +20,13 @@ const formSchema = z.object({
 		.string()
 		.min(2, { message: 'Location must be at least 2 characters' }),
 	price: z.string().min(1, { message: 'Price is required' }),
-	amenities: z.array(z.string()).min(1, 'At least one amenity is required.'),
+	amenities: z
+		.array(
+			z.object({
+				value: z.string().min(1, 'Amenity cannot be empty'),
+			})
+		)
+		.min(1, 'At least one amenity is required.'),
 	propertyType: z.string().min(1, 'Select property type'),
 	bedrooms: z.string(),
 	bathrooms: z.string(),
@@ -40,6 +47,13 @@ const formSchema = z.object({
 		),
 });
 
+// Infer form data types from schema
+type FormData = z.infer<typeof formSchema>;
+
+type FormDataWithAmenitiesArray = Omit<FormData, 'amenities'> & {
+	amenities: { value: string }[];
+};
+
 const AddProperties = () => {
 	const [loading, setLoading] = useState(false);
 
@@ -49,7 +63,7 @@ const AddProperties = () => {
 		setValue,
 		control,
 		formState: { errors },
-	} = useForm<z.infer<typeof formSchema>>({
+	} = useForm<FormDataWithAmenitiesArray>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			title: '',
@@ -57,7 +71,7 @@ const AddProperties = () => {
 			location: '',
 			price: '0',
 			image: [],
-			amenities: [''],
+			amenities: [{ value: '' }],
 			bathrooms: '0',
 			bedrooms: '0',
 			propertyType: '',
@@ -68,56 +82,77 @@ const AddProperties = () => {
 	// @ts-ignore
 	const { fields, append, remove } = useFieldArray({
 		control,
-		name: 'amenities' as string,
+		name: 'amenities',
 	});
 
 	const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const fileList = event.target.files;
 		if (fileList) {
 			const fileArray = Array.from(fileList) as File[];
-			setValue('image', fileArray); // Set the file array
+			setValue('image', fileArray);
 		}
 	};
 
-	const onSubmit = async (data: z.infer<typeof formSchema>) => {
+	const onSubmit = async (data: FormData) => {
 		setLoading(true);
-		console.log(data);
+		console.log('Form data:', data);
+
+		const transformedData = {
+			...data,
+			amenities: data.amenities.map((amenity) => amenity.value),
+		};
+
+		console.log('Transformed data:', transformedData);
 
 		try {
 			const imageFileIds = await Promise.all(
-				data.image.map(async (file) => {
+				transformedData.image.map(async (file) => {
+					console.log('Uploading file:', file.name);
 					const image = await storage.createFile(
 						'66c75d710025bfd53abe',
 						ID.unique(),
 						file
 					);
+					console.log('File uploaded, ID:', image.$id);
 					return image.$id;
 				})
 			);
-			await database.createDocument(
+			console.log('All files uploaded, IDs:', imageFileIds);
+
+			const docResult = await database.createDocument(
 				'66c73f49002e7b7365a3',
 				'66c869070039e48ddbaf',
 				ID.unique(),
 				{
-					title: data.title,
-					description: data.description,
-					location: data.location,
-					price: data.price,
+					title: transformedData.title,
+					description: transformedData.description,
+					location: transformedData.location,
+					price: transformedData.price,
 					images: imageFileIds,
-					amenities: data.amenities,
-					bedrooms: data.bedrooms,
-					bathroom: data.bathrooms,
-					property_type: data.propertyType,
-					link: data.youtubelink,
+					amenities: transformedData.amenities,
+					bedrooms: transformedData.bedrooms,
+					bathroom: transformedData.bathrooms,
+					property_type: transformedData.propertyType,
+					link: transformedData.youtubelink,
 				}
 			);
-		} catch (error) {
-			error;
-		} finally {
-		}
+			console.log('Document created:', docResult);
 
-		setLoading(false);
+			// Reset form or show success message
+			alert('Property added successfully!');
+		} catch (error) {
+			console.error('Error submitting form:', error);
+			alert('An error occurred while submitting the form. Please try again.');
+		} finally {
+			setLoading(false);
+		}
 	};
+
+	const onError = (errors: any) => {
+		console.log('Form validation errors:', errors);
+	};
+
+	console.log('Current form errors:', errors);
 
 	return (
 		<>
@@ -126,7 +161,7 @@ const AddProperties = () => {
 				<form
 					action=""
 					className="border p-4 rounded-md border-border flex flex-col gap-4 w-full"
-					onSubmit={handleSubmit(onSubmit)}>
+					onSubmit={handleSubmit(onSubmit, onError)}>
 					<div className="flex flex-col gap-2">
 						<label htmlFor="title" className="text-base font-semibold">
 							Title
@@ -166,12 +201,14 @@ const AddProperties = () => {
 					</div>
 					<div className="flex flex-col gap-2">
 						<label className="text-base font-semibold">Amenities</label>
-						{fields.map((item, index) => (
-							<div key={item.id} className="flex gap-2">
+						{fields.map((field, index) => (
+							<div key={field.id} className="flex gap-2">
 								<input
-									{...register(`amenities.${index}` as const)}
+									{...register(`amenities.${index}.value`)}
 									className={`bg-background-secondary w-full border ${
-										errors.amenities ? 'border-red-500' : 'border-border'
+										errors.amenities?.[index]
+											? 'border-red-500'
+											: 'border-border'
 									} rounded-md p-2`}
 									placeholder="Enter an amenity"
 								/>
@@ -188,7 +225,7 @@ const AddProperties = () => {
 						)}
 						<button
 							type="button"
-							onClick={() => append('')}
+							onClick={() => append({ value: '' })}
 							className="mt-2 bg-blue-500 text-white p-2 rounded">
 							Add Amenity
 						</button>
@@ -313,7 +350,11 @@ const AddProperties = () => {
 							<span className="text-red-500">{errors.image.message}</span>
 						)}
 					</div>
-					<Button variant="secondary" className="">
+					<div>
+						<h3>Debug Information:</h3>
+						<pre>{JSON.stringify({ errors, loading }, null, 2)}</pre>
+					</div>
+					<Button type="submit" variant="secondary" className="">
 						{loading ? 'Loading...' : 'Add Property'}
 					</Button>
 				</form>
