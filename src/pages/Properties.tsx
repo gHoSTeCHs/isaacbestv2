@@ -3,7 +3,9 @@ import CTA from '@/components/sections/CTA';
 import Footer from '@/components/sections/Footer';
 import NavBar from '@/components/sections/NavBar';
 import Header from '@/components/ui/header';
-import PropertySearch from '@/components/ui/propertysearch';
+import PropertySearch, {
+	PropertyFilters,
+} from '@/components/ui/propertysearch';
 import { database, storage } from '@/hooks/appwrite';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -17,12 +19,18 @@ interface Files {
 	price: string;
 	images: string[];
 	video?: string;
+	propertyType?: string;
 }
 
 const Properties = () => {
 	const [loading, setLoading] = useState(false);
 	const [files, setFiles] = useState<Files[]>([]);
 	const [error, setError] = useState<string | null>(null);
+	const [filteredFiles, setFilteredFiles] = useState<Files[]>([]);
+	const [filters, setFilters] = useState<PropertyFilters>({
+		propertyType: '',
+		priceRange: '',
+	});
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -62,6 +70,43 @@ const Properties = () => {
 
 		fetchData();
 	}, []);
+
+	useEffect(() => {
+		const applyFilters = () => {
+			let filtered = files;
+
+			if (filters.propertyType) {
+				filtered = filtered.filter(
+					(file) => file.propertyType === filters.propertyType
+				);
+			}
+
+			if (filters.priceRange) {
+				const priceRanges = {
+					'Less than 10 million': (price: number) => price < 10000000,
+					'Less than 30 million': (price: number) => price < 30000000,
+					'Less than 70 million': (price: number) => price < 70000000,
+					'Above 100 million': (price: number) => price >= 100000000,
+				};
+
+				filtered = filtered.filter((file) => {
+					const price = parseFloat(file.price);
+					return priceRanges[filters.priceRange as keyof typeof priceRanges](
+						price
+					);
+				});
+			}
+
+			setFilteredFiles(filtered);
+		};
+
+		applyFilters();
+	}, [files, filters]);
+
+	const handleFilterChange = (newFilters: PropertyFilters) => {
+		setFilters(newFilters);
+	};
+
 	return (
 		<div>
 			<NavBar />
@@ -79,7 +124,7 @@ const Properties = () => {
 						</div>
 					</div>
 					<div>
-						<PropertySearch />
+						<PropertySearch onFilterChange={handleFilterChange} />
 					</div>
 					<div className="py-10">
 						<Header
@@ -95,7 +140,7 @@ const Properties = () => {
 						<p className="text-red-500">{error}</p>
 					) : (
 						<div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
-							{files.map((doc) => (
+							{filteredFiles.map((doc) => (
 								<Link
 									to={`/property/${encodeURIComponent(doc.title)}`}
 									key={doc.$id}>

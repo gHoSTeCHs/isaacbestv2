@@ -132,7 +132,7 @@ const AddProperties = () => {
 					amenities: transformedData.amenities,
 					bedrooms: transformedData.bedrooms,
 					bathroom: transformedData.bathrooms,
-					property_type: transformedData.propertyType,
+					propertyType: transformedData.propertyType,
 					link: transformedData.youtubelink,
 				}
 			);
@@ -188,6 +188,9 @@ const AddProperties = () => {
 								className="text-sm block w-full h-full border border-border rounded-md bg-background-primary text-txt appearance-none focus:outline-none p-2">
 								<option value="Building">Building</option>
 								<option value="Flat">Flat</option>
+								<option value="Apartment">Apartment</option>
+								<option value="Lands">Apartment</option>
+								<option value="Estate">Estate</option>
 							</select>
 							<div className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer pointer-events-none">
 								<ChevronDown className="p-1 bg-background-secondary rounded-full" />

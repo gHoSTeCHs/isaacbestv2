@@ -1,14 +1,17 @@
 import { ChevronDown } from 'lucide-react';
+
 interface SelectBoxProps {
 	title: string;
 	values: string[];
+	onChange: (value: string) => void;
 }
 
-const SelectBox: React.FC<SelectBoxProps> = ({ title, values }) => {
+const SelectBox: React.FC<SelectBoxProps> = ({ title, values, onChange }) => {
 	return (
 		<div className="relative h-10">
 			<select
 				id="Location"
+				onChange={(e) => onChange(e.target.value)}
 				className="text-sm block w-full h-full border border-border rounded-md bg-background-primary text-txt appearance-none focus:outline-none p-2">
 				<option value={title} disabled selected>
 					{title}
