@@ -11,7 +11,6 @@ const useAuth = () => {
 	const [user, setUser] = useState<Models.User<Models.Preferences> | null>(
 		null
 	);
-	// const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		const fetchUser = async () => {

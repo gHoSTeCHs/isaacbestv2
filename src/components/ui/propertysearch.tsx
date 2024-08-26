@@ -37,7 +37,6 @@ const PropertySearch: React.FC<PropertySearchProps> = ({ onFilterChange }) => {
 			<SelectBox
 				title="Price Range"
 				values={[
-					'',
 					'Less than 10 million',
 					'Less than 30 million',
 					'Less than 70 million',
