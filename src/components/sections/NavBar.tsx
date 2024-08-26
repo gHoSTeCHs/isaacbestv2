@@ -57,9 +57,9 @@ const NavBar = () => {
 
 				<div className="hidden md:flex gap-4">
 					{navLinks.map((link) => (
-						<a href={link.href} key={link.title}>
+						<Link to={link.href} key={link.title}>
 							{link.title}
-						</a>
+						</Link>
 					))}
 				</div>
 
