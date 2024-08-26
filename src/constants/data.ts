@@ -45,63 +45,6 @@ export const statistics = [
 	},
 ];
 
-export const PropertyData = [
-	{
-		id: 1,
-		title: 'Seaside Serenity Villa',
-		location: 'Lekki, Lagos State',
-		price: '23008004',
-		image: [images.img2, images.img2, images.img3],
-		latitude: 5.104,
-		longitude: 7.366,
-		description:
-			' Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus consequuntur doloremque ullam quasi',
-		amenities: [
-			'Expansive oceanfront terrace for outdoor entertaining',
-			'Gourmet kitchen with top-of-the-line appliances',
-			'Private beach access for morning strolls and sunset views',
-			'Master suite with a spa-inspired bathroom and ocean-facing balcony',
-			'Private garage and ample storage space',
-		],
-	},
-	{
-		id: 2,
-		title: 'Seaside Serenity Villa',
-		location: 'Umuahia, Abia State',
-		price: '23008004',
-		image: [images.img2, images.img3, images.img1],
-		latitude: 5.1052,
-		longitude: 7.3673,
-		description:
-			' Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus consequuntur doloremque ullam quasi',
-		amenities: [
-			'Expansive oceanfront terrace for outdoor entertaining',
-			'Gourmet kitchen with top-of-the-line appliances',
-			'Private beach access for morning strolls and sunset views',
-			'Master suite with a spa-inspired bathroom and ocean-facing balcony',
-			'Private garage and ample storage space',
-		],
-	},
-	{
-		id: 3,
-		title: 'Seaside Serenity Villa',
-		location: 'Owerrinta, Imo State',
-		price: '23008004',
-		image: [images.img3, images.img2, images.img1],
-		latitude: 5.106,
-		longitude: 7.368,
-		description:
-			' Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus consequuntur doloremque ullam quasi',
-		amenities: [
-			'Expansive oceanfront terrace for outdoor entertaining',
-			'Gourmet kitchen with top-of-the-line appliances',
-			'Private beach access for morning strolls and sunset views',
-			'Master suite with a spa-inspired bathroom and ocean-facing balcony',
-			'Private garage and ample storage space',
-		],
-	},
-];
-
 export const userTestimonials = [
 	{
 		name: 'Wade Warren',

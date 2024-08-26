@@ -1,7 +1,4 @@
 import building from '@/assets/images/building.png';
-import img1 from '@/assets/images/house1.jpg';
-import img2 from '@/assets/images/house2.jpg';
-import img3 from '@/assets/images/house3.jpg';
 import user1 from '@/assets/images/user1.png';
 import user2 from '@/assets/images/user2.png';
 import user3 from '@/assets/images/user3.png';
@@ -43,9 +40,6 @@ import workshop from '@/assets/images/workshop.png';
 
 export default {
 	building,
-	img1,
-	img2,
-	img3,
 	user1,
 	user2,
 	user3,

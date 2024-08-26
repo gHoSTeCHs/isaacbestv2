@@ -53,7 +53,6 @@ const Featured = () => {
 
 				setFiles(docsWithImageUrls);
 			} catch (error) {
-				console.error(error);
 				setError('Failed to load properties. Please try again later.');
 			} finally {
 				setLoading(false);

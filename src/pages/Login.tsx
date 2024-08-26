@@ -30,7 +30,6 @@ const LoginPage = () => {
 	});
 
 	const onSubmit = async (data: z.infer<typeof formSchema>) => {
-		console.log('Form submitted:', data);
 		try {
 			setLoading(true);
 			const res = await account.createEmailPasswordSession(

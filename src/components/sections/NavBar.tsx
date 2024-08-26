@@ -1,45 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { authLinks, navLinks } from '@/constants/data';
-import logo from '../../assets/icons/logo.svg';
+import logo from '../../assets/icons/logo (2).svg';
 import Button from '../ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { account } from '@/hooks/appwrite';
-import { Models } from 'appwrite';
-import { redirect } from 'react-router-dom';
-
-const useAuth = () => {
-	const [user, setUser] = useState<Models.User<Models.Preferences> | null>(
-		null
-	);
-
-	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-				const userData = await account.get();
-				setUser(userData);
-			} catch (error) {
-				console.error('Error fetching user:', error);
-			} finally {
-				// setLoading(false);
-			}
-		};
-		fetchUser();
-	}, []);
-
-	return { user };
-};
+import { useAuth } from '@/hooks/authContext';
 
 const NavBar = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const { user } = useAuth();
+	const navigate = useNavigate();
 
 	const toggleMenu = () => {
 		setIsMenuOpen((prev) => !prev);
 	};
 
 	const logOut = async () => {
-		await account.deleteSession('current');
-		redirect('/login');
+		try {
+			await account.deleteSession('current');
+			navigate('/login');
+		} catch (error) {
+			console.error('Error logging out:', error);
+		}
 	};
 
 	return (
@@ -112,14 +94,11 @@ const NavBar = () => {
 								))}
 							</>
 						) : (
-							<>
-								<Link
-									className="p-4 rounded-md hover:bg-background-primary hover:text-txt"
-									to="/login"
-									onClick={logOut}>
-									Logout
-								</Link>
-							</>
+							<button
+								className="p-4 rounded-md hover:bg-background-primary hover:text-txt"
+								onClick={logOut}>
+								Logout
+							</button>
 						)}
 
 						<Button variant="primary">

@@ -95,29 +95,24 @@ const AddProperties = () => {
 
 	const onSubmit = async (data: FormData) => {
 		setLoading(true);
-		console.log('Form data:', data);
 
 		const transformedData = {
 			...data,
 			amenities: data.amenities.map((amenity) => amenity.value),
 		};
 
-		console.log('Transformed data:', transformedData);
-
 		try {
 			const imageFileIds = await Promise.all(
 				transformedData.image.map(async (file) => {
-					console.log('Uploading file:', file.name);
 					const image = await storage.createFile(
 						'66c75d710025bfd53abe',
 						ID.unique(),
 						file
 					);
-					console.log('File uploaded, ID:', image.$id);
+
 					return image.$id;
 				})
 			);
-			console.log('All files uploaded, IDs:', imageFileIds);
 
 			const docResult = await database.createDocument(
 				'66c73f49002e7b7365a3',
@@ -148,12 +143,6 @@ const AddProperties = () => {
 		}
 	};
 
-	const onError = (errors: any) => {
-		console.log('Form validation errors:', errors);
-	};
-
-	console.log('Current form errors:', errors);
-
 	return (
 		<>
 			<div className="container">
@@ -161,7 +150,7 @@ const AddProperties = () => {
 				<form
 					action=""
 					className="border p-4 rounded-md border-border flex flex-col gap-4 w-full"
-					onSubmit={handleSubmit(onSubmit, onError)}>
+					onSubmit={handleSubmit(onSubmit)}>
 					<div className="flex flex-col gap-2">
 						<label htmlFor="title" className="text-base font-semibold">
 							Title
@@ -353,10 +342,7 @@ const AddProperties = () => {
 							<span className="text-red-500">{errors.image.message}</span>
 						)}
 					</div>
-					<div>
-						<h3>Debug Information:</h3>
-						<pre>{JSON.stringify({ errors, loading }, null, 2)}</pre>
-					</div>
+
 					<Button type="submit" variant="secondary" className="">
 						{loading ? 'Loading...' : 'Add Property'}
 					</Button>
