@@ -58,7 +58,9 @@ const Hero = () => {
 						</p>
 					</div>
 					<div className="flex flex-col gap-4 md:flex-row md:w-[400px] md:mx-auto md:items-center md:justify-center lg:w-auto lg:justify-start">
-						<Button className="para">Learn More</Button>
+						<Button className="para">
+							<Link to={'/services'}>Learn More</Link>
+						</Button>
 						<Button className="para" variant="secondary">
 							{' '}
 							<Link to={'/properties'}>Browse Properties</Link>

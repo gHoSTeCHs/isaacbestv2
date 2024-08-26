@@ -189,7 +189,7 @@ const AddProperties = () => {
 								<option value="Building">Building</option>
 								<option value="Flat">Flat</option>
 								<option value="Apartment">Apartment</option>
-								<option value="Lands">Apartment</option>
+								<option value="Lands">Lands</option>
 								<option value="Estate">Estate</option>
 							</select>
 							<div className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer pointer-events-none">

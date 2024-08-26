@@ -117,7 +117,7 @@ const Properties = () => {
 							<Header
 								title={'Find Your Dream Property'}
 								description={
-									'Welcome to Estatein, where your dream property awaits in every corner of our beautiful world. Explore our curated selection of properties, each offering a unique story and a chance to redefine your life. With categories to suit every dreamer, your journey '
+									'Welcome to IsaacBestProperties, where your dream property awaits in every corner of our beautiful world. Explore our curated selection of properties, each offering a unique story and a chance to redefine your life. With categories to suit every dreamer, your journey '
 								}
 								showAbstract={false}
 							/>
@@ -129,7 +129,7 @@ const Properties = () => {
 					<div className="py-10">
 						<Header
 							title="Discover a World of Possibilities"
-							description="Our portfolio of properties is as diverse as your dreams. Explore the following categories to find the perfect property that resonates with your vision of home"
+							description="Our portfolio of properties is as diverse as your dreams. Explore the following below to find the perfect property that resonates with your vision of home"
 							showAbstract={true}
 						/>
 					</div>
@@ -138,10 +138,15 @@ const Properties = () => {
 						<p>Loading..</p>
 					) : error ? (
 						<p className="text-red-500">{error}</p>
+					) : filteredFiles.length < 1 ? (
+						<p>No properties found matching your criteria.</p>
 					) : (
-						<div className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
+						<div
+							className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 
+          place-items-center">
 							{filteredFiles.map((doc) => (
 								<Link
+									className="w-full"
 									to={`/property/${encodeURIComponent(doc.title)}`}
 									key={doc.$id}>
 									<PropertyCard

@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { ScrollTrigger } from 'gsap/all';
+import gsap from 'gsap';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface HeaderProps {
 	title: string;
@@ -11,10 +15,41 @@ const Header: React.FC<HeaderProps> = ({
 	description,
 	showAbstract,
 }) => {
+	const headerRef = useRef<HTMLDivElement | null>(null);
+
+	useEffect(() => {
+		const element = headerRef.current;
+
+		if (element) {
+			gsap.fromTo(
+				element,
+				{
+					opacity: 0,
+					y: 20,
+				},
+				{
+					opacity: 1,
+					y: 0,
+					duration: 1,
+					scrollTrigger: {
+						trigger: element,
+						start: 'top 80%', // Start the animation when the top of the element is 80% from the top of the viewport
+						toggleActions: 'play none none reverse', // Play on enter, reverse on leave
+					},
+				}
+			);
+		}
+
+		// Cleanup function to kill ScrollTrigger on unmount
+		return () => {
+			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+		};
+	}, []);
+
 	return (
-		<div className="flex flex-col gap-1 max-w-[960px]">
+		<div className="flex flex-col gap-1 max-w-[960px] header" ref={headerRef}>
 			<svg
-				className={`${showAbstract ? 'block' : 'hidden'}`}
+				className={`abstract ${showAbstract ? 'block' : 'hidden'}`}
 				width="55"
 				height="24"
 				viewBox="0 0 55 24"
@@ -108,7 +143,7 @@ const Header: React.FC<HeaderProps> = ({
 					</clipPath>
 				</defs>
 			</svg>
-			<h2 className=" text-3xl md:text-4xl font-bold mb-1">{title}</h2>
+			<h2 className="text-3xl md:text-4xl font-bold mb-1">{title}</h2>
 			<p className="text-txt text-sm md:text-base">{description}</p>
 		</div>
 	);

@@ -44,7 +44,7 @@ const Testimonials = () => {
 			<section className="container py-20 pt-10">
 				<Header
 					title="What Our Clients Say"
-					description="Read the success stories and heartfelt testimonials from our valued clients. Discover why they chose Estatein for their real estate needs."
+					description="Read the success stories and heartfelt testimonials from our valued clients. Discover why they chose IsaacBestProperties for their real estate needs."
 					showAbstract={true}
 				/>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-5 mt-10">

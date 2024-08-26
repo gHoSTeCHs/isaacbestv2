@@ -260,20 +260,22 @@ const Property = () => {
 						<div className="py-9">
 							<Header
 								title={`Inquire About ${property.title}`}
-								description="Interested in this property? Contact us via Whatsapp or fill out the form below, and our agents will get back to you with more details, including scheduling a viewing and answering any questions you may have."
+								description="Interested in this property? Contact us via Whatsapp or via email to get started with the acquiring this great real estate"
 								showAbstract={true}
 							/>
-							<div className="flex flex-col gap-5">
+							<div className="flex flex-col gap-5 mt-5">
 								<div>
 									<a
-										href="https://wa.me/08134141834?text=Hello%2C%20World%21"
+										href={`https://wa.me/08035450948?text=Hello!${encodeURIComponent(
+											` I would like to inquire about ${property.title} located at ${property.location}.`
+										)}`}
 										className="flex items-center gap-3">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											x="0px"
 											y="0px"
-											width="100"
-											height="100"
+											width="50"
+											height="50"
 											viewBox="0 0 48 48">
 											<path
 												fill="#fff"
@@ -390,3 +392,10 @@ const Property = () => {
 };
 
 export default Property;
+// full detached => https://youtu.be/wUzwZJm-etQ
+// detached 4 bedroom => https://youtube.com/shorts/KmWx23HTlWU?feature=share
+// one and half plot of lane => https://youtu.be/SBlqUCrdRUA
+// Two plots of land => https://youtu.be/xJV8WvJRAzY
+// 4 bedroom ensuite duplex => https://youtube.com/shorts/RlMlmjnZ_r0?feature=share
+// 3 Bedroom bungalow => https://youtu.be/ALCpdsZoJKE
+// one storey building => https://youtu.be/7_0DNF6Qe3o

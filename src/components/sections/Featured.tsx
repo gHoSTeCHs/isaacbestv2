@@ -70,7 +70,7 @@ const Featured = () => {
 					<div className="mb-6">
 						<Header
 							title="Featured Properties"
-							description="Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through Estatein. Click 'View Details' for more information."
+							description="Explore our handpicked selection of featured properties. Each listing offers a glimpse into exceptional homes and investments available through IsaacBestProperties. Click 'View Details' for more information."
 							showAbstract={true}
 						/>
 					</div>

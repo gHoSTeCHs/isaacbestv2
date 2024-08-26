@@ -31,7 +31,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
 	});
 
 	return (
-		<div className="flex flex-col gap-6 border border-border max-w-[413px] py-5 px-4 rounded-lg lg:p-5">
+		<div className="flex flex-col gap-6 border border-border max-w-[413px] py-5 px-4 rounded-lg lg:p-5 hover:scale-105 hover:bg-background-secondary/30 transition-all">
 			<div className="embla" ref={emblaRef}>
 				<div className="embla__container">
 					{images.map((image, index) => (

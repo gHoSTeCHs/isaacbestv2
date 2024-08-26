@@ -108,7 +108,7 @@ export const userTestimonials = [
 		location: 'USA, California',
 		title: 'Exceptional Service!',
 		description:
-			"Our experience with Estatein was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
+			"Our experience with IsaacBestProperties was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
 		rating: 4,
 		image: images.user1,
 	},
@@ -117,7 +117,7 @@ export const userTestimonials = [
 		location: 'USA, New York',
 		title: 'A Seamless Experience!',
 		description:
-			"Estatein made the home-buying process seamless and stress-free. Their expertise and support were invaluable. I couldn't be happier with my new home!",
+			"IsaacBestProperties made the home-buying process seamless and stress-free. Their expertise and support were invaluable. I couldn't be happier with my new home!",
 		rating: 5,
 		image: images.user2,
 	},
@@ -126,7 +126,7 @@ export const userTestimonials = [
 		location: 'USA, Texas',
 		title: 'Highly Professional Team!',
 		description:
-			'The team at Estatein was highly professional and attentive. They listened to our needs and found us the perfect property. Thank you very much!',
+			'The team at IsaacBestProperties was highly professional and attentive. They listened to our needs and found us the perfect property. Thank you very much!',
 		rating: 4,
 		image: images.user3,
 	},
@@ -135,7 +135,7 @@ export const userTestimonials = [
 		location: 'USA, Florida',
 		title: 'Above and Beyond!',
 		description:
-			'Estatein went above and beyond to help us find our dream home. Their commitment to customer satisfaction is truly commendable!',
+			'IsaacBestProperties went above and beyond to help us find our dream home. Their commitment to customer satisfaction is truly commendable!',
 		rating: 5,
 		image: images.user4,
 	},
@@ -144,7 +144,7 @@ export const userTestimonials = [
 		location: 'USA, Illinois',
 		title: 'Fantastic Service!',
 		description:
-			'I had a fantastic experience working with Estatein. They were always available to answer my questions and guided me every step of the way.',
+			'I had a fantastic experience working with IsaacBestProperties. They were always available to answer my questions and guided me every step of the way.',
 		rating: 4,
 		image: images.user5,
 	},
@@ -153,7 +153,7 @@ export const userTestimonials = [
 		location: 'USA, Washington',
 		title: 'Incredible Support!',
 		description:
-			'The support from Estatein was incredible. They helped us navigate the market and find a home that fit our budget and needs perfectly.',
+			'The support from IsaacBestProperties was incredible. They helped us navigate the market and find a home that fit our budget and needs perfectly.',
 		rating: 5,
 		image: images.user6,
 	},
@@ -342,7 +342,7 @@ export const OurServices = [
 	{
 		title: 'Unlock Property Value',
 		description:
-			'Selling your property should be a rewarding experience, and at Estatein, we make sure it is.',
+			'Selling your property should be a rewarding experience, and at IsaacBestProperties, we make sure it is.',
 		subservices: [
 			{
 				title: 'Valuation Mastery',
@@ -377,7 +377,7 @@ export const OurServices = [
 	{
 		title: 'Effortless Property Management',
 		description:
-			"Owning a property should be a pleasure, not a hassle. Estatein's Property Management Service takes the stress out of property ownership.",
+			"Owning a property should be a pleasure, not a hassle. IsaacBestProperties's Property Management Service takes the stress out of property ownership.",
 		subservices: [
 			{
 				title: 'Tenant Harmony',
@@ -477,6 +477,157 @@ export const OurServices = [
 		ctaheader: 'Simplify Your Property Transactions with Our Document Services',
 		ctadescription:
 			'Organize and manage all your property documents with ease. Our team ensures compliance and a successful registration process.',
+		ctalink: '#',
+	},
+	{
+		title: 'Land Disputes and Reconciliations',
+		description:
+			'Resolve conflicts over property boundaries, ownership, and usage rights with our expert mediation and legal services.',
+		subservices: [
+			{
+				title: 'Mediation Services',
+				description:
+					'We facilitate discussions between conflicting parties to reach a mutually acceptable solution.',
+				image: images.mediation,
+			},
+			{
+				title: 'Legal Representation',
+				description:
+					'Our legal team provides representation in court for land disputes to protect your rights and interests.',
+				image: images.legal,
+			},
+			{
+				title: 'Conflict Resolution Workshops',
+				description:
+					'Participate in workshops to learn effective negotiation and conflict resolution techniques.',
+				image: images.workshop,
+			},
+		],
+		ctaheader: 'Resolve Your Land Disputes Effectively',
+		ctadescription:
+			'Our experienced team is here to help you navigate land disputes and achieve a fair resolution.',
+		ctalink: '#',
+	},
+	{
+		title: 'Documentation and Property Registration',
+		description:
+			'Streamline your property transactions with our expert assistance in document management and registration.',
+		subservices: [
+			{
+				title: 'Document Organization',
+				description:
+					'We help you organize and manage all necessary documents for your property transactions.',
+				image: images.document,
+			},
+			{
+				title: 'Document Digitization',
+				description:
+					'Convert your physical documents into digital format for easy access and storage.',
+				image: images.digital,
+			},
+			{
+				title: 'Document Compliance',
+				description:
+					'Our team ensures that all documents meet legal requirements and are properly executed.',
+				image: images.compliance,
+			},
+			{
+				title: 'Property Registration Guidance',
+				description:
+					'We guide you through the property registration process, ensuring a successful transfer of ownership.',
+				image: images.guide,
+			},
+		],
+		ctaheader: 'Simplify Your Property Transactions with Our Document Services',
+		ctadescription:
+			'Organize and manage all your property documents with ease. Our team ensures compliance and a successful registration process.',
+		ctalink: '#',
+	},
+	{
+		title: 'Assessment of Compensatory Plots',
+		description:
+			'Evaluate alternative land options provided to property owners when their land is acquired for public use.',
+		subservices: [
+			{
+				title: 'Site Evaluation',
+				description:
+					'Assess potential compensatory plots based on location, accessibility, and market value.',
+				image: images.siteEvaluation,
+			},
+			{
+				title: 'Compensation Calculation',
+				description:
+					'Calculate fair compensation based on current market rates and property valuations.',
+				image: images.compensation,
+			},
+			{
+				title: 'Negotiation with Authorities',
+				description:
+					'Represent property owners in discussions with government agencies regarding compensation and plot selection.',
+				image: images.negotiation,
+			},
+		],
+		ctaheader: 'Ensure Fair Compensation for Your Land',
+		ctadescription:
+			'Our experts are here to help you evaluate compensatory plots and ensure you receive fair compensation.',
+		ctalink: '#',
+	},
+	{
+		title: 'Guidance in Property Acquisition',
+		description:
+			'Receive expert advice and support throughout the process of purchasing land or property.',
+		subservices: [
+			{
+				title: 'Market Analysis',
+				description:
+					'Provide insights into property market trends, pricing, and investment opportunities.',
+				image: images.marketAnalysis,
+			},
+			{
+				title: 'Due Diligence',
+				description:
+					'Conduct thorough checks on properties, including title searches and zoning regulations.',
+				image: images.dueDiligence,
+			},
+			{
+				title: 'Transaction Support',
+				description:
+					'Assist with negotiations, financing options, and closing procedures to ensure a smooth transaction.',
+				image: images.transactionSupport,
+			},
+		],
+		ctaheader: 'Make Informed Property Decisions',
+		ctadescription:
+			'Our team is dedicated to guiding you through the property acquisition process with expert support.',
+		ctalink: '#',
+	},
+	{
+		title: 'Enquiries',
+		description:
+			'Get answers to your questions and concerns regarding land and property matters.',
+		subservices: [
+			{
+				title: 'Information Sessions',
+				description:
+					'Join our sessions to learn about property laws, rights, and responsibilities.',
+				image: images.informationSession,
+			},
+			{
+				title: 'Personal Consultations',
+				description:
+					'Receive one-on-one consultations to address specific queries related to land and property.',
+				image: images.consultation,
+			},
+			{
+				title: 'Resource Materials',
+				description:
+					'Access brochures, guides, and online resources to help you navigate property-related issues.',
+				image: images.marketing,
+			},
+		],
+		ctaheader: 'We’re Here to Help You',
+		ctadescription:
+			'Contact us for any enquiries related to land and property. Our team is ready to assist you.',
 		ctalink: '#',
 	},
 ];
