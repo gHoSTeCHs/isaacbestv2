@@ -53,7 +53,7 @@ const Hero = () => {
 							Discover Your Dream Property with IsaacBest
 						</h2>
 						<p className="text-[14px] text-txt lg:text-[16px] para">
-							Your journey to finding the per fect property begins here. Explore
+							Your journey to finding the perfect property begins here. Explore
 							our listings to find the home that matches your dreams.
 						</p>
 					</div>

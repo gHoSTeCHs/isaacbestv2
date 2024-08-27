@@ -3,11 +3,11 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Button from './ui/button';
 
 interface PropertyProps {
-	title: string;
-	location: string;
+	title: string | JSX.Element;
+	location: string | JSX.Element;
 	price: string;
 	images: string[];
-	description: string;
+	description: string | JSX.Element;
 }
 
 const PropertyCard: React.FC<PropertyProps> = ({

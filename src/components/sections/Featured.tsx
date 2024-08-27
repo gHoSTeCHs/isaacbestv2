@@ -5,7 +5,9 @@ import Button from '../ui/button';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { database, storage } from '@/hooks/appwrite';
-import { Loader } from 'lucide-react';
+// import { Loader } from 'lucide-react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'; // Import skeleton styles
 
 interface Files {
 	imgUrls: string[];
@@ -73,27 +75,38 @@ const Featured = () => {
 							showAbstract={true}
 						/>
 					</div>
-					<div
-						className="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4 
-          place-items-center">
-						{loading && <Loader className="w-8 h-8" />}
-						{files.map((item, index) => {
-							return (
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center">
+						{loading ? (
+							// Display skeleton loaders while loading
+							<SkeletonTheme baseColor="#191919">
+								{Array.from({ length: 3 }).map((_, index) => (
+									<div
+										key={index}
+										className="w-full border border-border py-5 px-4 rounded-lg lg:p-5 hover:scale-105 hover:bg-background-secondary/30 transition-all">
+										<Skeleton height={200} />
+										<Skeleton height={20} style={{ marginTop: '10px' }} />
+										<Skeleton height={20} style={{ marginTop: '5px' }} />
+										<Skeleton height={20} style={{ marginTop: '5px' }} />
+									</div>
+								))}
+							</SkeletonTheme>
+						) : (
+							files.map((item) => (
 								<Link
 									className="w-full"
 									to={`/property/${encodeURIComponent(item.title)}`}
-									key={index}>
+									key={item.$id}>
 									<PropertyCard
-										title={item.title}
+										title={item.title || 'Untitled'}
 										location={item.location}
 										price={item.price}
 										images={item.imgUrls}
 										description={item.description}
 									/>
 								</Link>
-							);
-						})}
-						{error && <p>{`Error loading featured properties:${error}`}</p>}
+							))
+						)}
+						{error && <p>{`Error loading featured properties: ${error}`}</p>}
 					</div>
 					<div className="w-full">
 						<Button

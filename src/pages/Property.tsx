@@ -255,7 +255,11 @@ const Property = () => {
 						</div>
 
 						<div className="py-4 mt-4 rounded-md">
-							<ReactPlayer url={property.link} width={'100%'} />
+							{property.link ? (
+								<ReactPlayer url={property.link} width={'100%'} />
+							) : (
+								<p>No Video avaliable</p>
+							)}
 						</div>
 						<div className="py-9">
 							<Header
@@ -392,10 +396,3 @@ const Property = () => {
 };
 
 export default Property;
-// full detached => https://youtu.be/wUzwZJm-etQ
-// detached 4 bedroom => https://youtube.com/shorts/KmWx23HTlWU?feature=share
-// one and half plot of lane => https://youtu.be/SBlqUCrdRUA
-// Two plots of land => https://youtu.be/xJV8WvJRAzY
-// 4 bedroom ensuite duplex => https://youtube.com/shorts/RlMlmjnZ_r0?feature=share
-// 3 Bedroom bungalow => https://youtu.be/ALCpdsZoJKE-
-// one storey building => https://youtu.be/7_0DNF6Qe3o -

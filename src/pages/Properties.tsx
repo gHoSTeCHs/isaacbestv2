@@ -11,6 +11,7 @@ import { images } from '@/constants';
 import { database, storage } from '@/hooks/appwrite';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
 
 interface PropertyType {
@@ -159,7 +160,6 @@ const Properties = () => {
 			let filtered = files;
 
 			if (selectedType) {
-				// Apply property type filter
 				filtered = filtered.filter(
 					(file) => file.propertyType === selectedType
 				);
@@ -216,7 +216,7 @@ const Properties = () => {
 								{propertyTypes.map((type) => (
 									<div
 										key={type.name}
-										className="flex flex-col gap-2 justify-center p-4 max-w-[300px] border border-border rounded-xl hover:scale-105 hover:bg-background-secondary/30 transition-all"
+										className="flex flex-col gap-2 justify-center p-4 max-w-[300px] h-[428px] border border-border rounded-xl hover:scale-105 hover:bg-background-secondary/30 transition-all"
 										onClick={() => handleTypeClick(type.name)}>
 										<img
 											loading="lazy"
@@ -241,7 +241,22 @@ const Properties = () => {
 							</Button>
 							<PropertySearch onFilterChange={handleFilterChange} />
 							{loading ? (
-								<p>Loading..</p>
+								<div className="flex items-center justify-center w-full h-screen">
+									<div className="flex items-center gap-3">
+										<SkeletonTheme baseColor="#191919">
+											{Array.from({ length: 3 }).map((_, index) => (
+												<div
+													key={index}
+													className="w-full border border-border py-5 px-4 rounded-lg lg:p-5 hover:scale-105 hover:bg-background-secondary/30 transition-all">
+													<Skeleton height={200} />
+													<Skeleton height={20} style={{ marginTop: '10px' }} />
+													<Skeleton height={20} style={{ marginTop: '5px' }} />
+													<Skeleton height={20} style={{ marginTop: '5px' }} />
+												</div>
+											))}
+										</SkeletonTheme>
+									</div>
+								</div>
 							) : error ? (
 								<p className="text-red-500">{error}</p>
 							) : filteredFiles.length < 1 ? (

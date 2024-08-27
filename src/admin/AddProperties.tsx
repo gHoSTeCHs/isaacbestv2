@@ -6,7 +6,6 @@ import Button from '@/components/ui/button';
 import { useState } from 'react';
 import { database, storage } from '@/hooks/appwrite';
 import { ID } from 'appwrite';
-// import { v4 as uuidv4 } from 'uuid';
 
 const MAX_FILE_SIZE = 5242880;
 const ALLOWED_FILE_TYPES = ['image/png', 'image/jpeg', 'image/jpg'];
@@ -47,7 +46,6 @@ const formSchema = z.object({
 		),
 });
 
-// Infer form data types from schema
 type FormData = z.infer<typeof formSchema>;
 
 type FormDataWithAmenitiesArray = Omit<FormData, 'amenities'> & {
@@ -79,7 +77,6 @@ const AddProperties = () => {
 		},
 	});
 
-	// @ts-ignore
 	const { fields, append, remove } = useFieldArray({
 		control,
 		name: 'amenities',
@@ -91,6 +88,19 @@ const AddProperties = () => {
 			const fileArray = Array.from(fileList) as File[];
 			setValue('image', fileArray);
 		}
+	};
+
+	const reset = () => {
+		setValue('title', '');
+		setValue('description', '');
+		setValue('location', '');
+		setValue('price', '0');
+		setValue('image', []);
+		setValue('amenities', [{ value: '' }]);
+		setValue('bathrooms', '0');
+		setValue('bedrooms', '0');
+		setValue('propertyType', '');
+		setValue('youtubelink', '');
 	};
 
 	const onSubmit = async (data: FormData) => {
@@ -133,8 +143,8 @@ const AddProperties = () => {
 			);
 			console.log('Document created:', docResult);
 
-			// Reset form or show success message
 			alert('Property added successfully!');
+			reset();
 		} catch (error) {
 			console.error('Error submitting form:', error);
 			alert('An error occurred while submitting the form. Please try again.');
@@ -180,6 +190,17 @@ const AddProperties = () => {
 								<option value="Apartment">Apartment</option>
 								<option value="Lands">Lands</option>
 								<option value="Estate">Estate</option>
+								<option value="Building Construction">
+									Building Construction
+								</option>
+								<option value="Office Buildings">Office Buildings</option>
+								<option value="Shopping Centers/Malls">
+									Shopping Centers/Malls
+								</option>
+								<option value="Restaurants">Restaurants</option>
+								<option value="Hotels">Hotels</option>
+								<option value="Warehouses">Warehouses</option>
+								<option value="Penthouses">Penthouses</option>
 							</select>
 							<div className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer pointer-events-none">
 								<ChevronDown className="p-1 bg-background-secondary rounded-full" />
@@ -332,7 +353,7 @@ const AddProperties = () => {
 						<input
 							id="image"
 							type="file"
-							onChange={handleImageChange} // Only use onChange here
+							onChange={handleImageChange}
 							multiple
 							className={`bg-background-secondary w-full border ${
 								errors.image ? 'border-red-500' : 'border-border'
