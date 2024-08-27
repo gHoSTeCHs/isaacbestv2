@@ -112,7 +112,7 @@ const Featured = () => {
 						<Button
 							variant="primary"
 							className="bg-background-secondary w-full mt-5">
-							<a href={'/properties'}> View All Properties </a>
+							<Link to={'/properties'}> View All Properties </Link>
 						</Button>
 					</div>
 				</div>
