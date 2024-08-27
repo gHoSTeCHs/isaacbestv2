@@ -32,8 +32,8 @@ const formSchema = z.object({
 	youtubelink: z.string().min(10, 'YouTube link is required'),
 	image: z
 		.array(z.instanceof(File))
-		.refine((files) => files.length >= 1 && files.length <= 5, {
-			message: 'You can upload between 1 and 5 images.',
+		.refine((files) => files.length >= 1 && files.length <= 10, {
+			message: 'You can upload between 1 and 10 images.',
 		})
 		.refine((files) => files.every((file) => file.size <= MAX_FILE_SIZE), {
 			message: 'Max file size is 5MB.',

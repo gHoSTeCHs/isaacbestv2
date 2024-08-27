@@ -3,7 +3,7 @@ import React from 'react';
 
 interface LinkCardProps {
 	value: string;
-	link: string;
+	link?: string;
 	image: string;
 }
 

@@ -21,15 +21,18 @@ const Contact = () => {
 					/>
 				</div>
 				<div className="grid grid-cols-2 gap-4">
-					<LinkCard value={'+23481274839405'} link={'#'} image={images.phone} />
 					<LinkCard
-						value={'isaacbest@gmail.com'}
-						link={'#'}
-						image={images.email}
+						value={'+2348035450948'}
+						link={`tel:+2348035450948`}
+						image={images.phone}
 					/>
+					<a href="mailto:isaacbest@gmail.com" title="email">
+						<LinkCard value={'isaacamuchie@gmail.com'} image={images.email} />
+					</a>
+
 					<LinkCard
 						value={'Main Headquarters'}
-						link={'#'}
+						link={'https://maps.google.com/?q=<lat>,<lng>'}
 						image={images.location}
 					/>
 					<LinkCard value={'Socials'} link={'#'} image={images.socials} />

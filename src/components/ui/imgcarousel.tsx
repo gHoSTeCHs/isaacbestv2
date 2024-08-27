@@ -16,6 +16,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 		containScroll: 'keepSnaps',
 		dragFree: true,
 	});
+	const [isImageFullScreen, setIsImageFullScreen] = useState(false);
+	const [fullScreenImage, setFullScreenImage] = useState('');
 
 	const onThumbClick = useCallback(
 		(index: number) => {
@@ -38,12 +40,24 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 		emblaMainApi.on('select', onSelect).on('reInit', onSelect);
 	}, [emblaMainApi, onSelect]);
 
+	const handleImageClick = (image: string) => {
+		setFullScreenImage(image);
+		setIsImageFullScreen(true);
+	};
+
+	const handleCloseFullScreen = () => {
+		setIsImageFullScreen(false);
+	};
+
 	return (
 		<div className="emblaV2 bg-background-secondary p-4 rounded-md">
 			<div className="embla__viewport" ref={emblaMainRef}>
 				<div className="embla__containerV2">
 					{slides.map((image, index) => (
-						<div className="embla__slideV2" key={index}>
+						<div
+							className="embla__slideV2 cursor-pointer"
+							key={index}
+							onClick={() => handleImageClick(image)}>
 							<img
 								loading="lazy"
 								src={image}
@@ -69,6 +83,17 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 					</div>
 				</div>
 			</div>
+			{isImageFullScreen && (
+				<div
+					className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-80 flex justify-center items-center z-50 cursor-pointer"
+					onClick={handleCloseFullScreen}>
+					<img
+						src={fullScreenImage}
+						alt="Full Screen"
+						className="max-h-[90%] max-w-[90%] object-contain"
+					/>
+				</div>
+			)}
 		</div>
 	);
 };
