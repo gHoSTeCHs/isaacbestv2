@@ -8,13 +8,13 @@ interface PropertySearchProps {
 }
 
 export interface PropertyFilters {
-	propertyType: string;
+	// propertyType: string;
 	priceRange: string;
 }
 
 const PropertySearch: React.FC<PropertySearchProps> = ({ onFilterChange }) => {
 	const [filters, setFilters] = useState<PropertyFilters>({
-		propertyType: '',
+		// propertyType: '',
 		priceRange: '',
 	});
 
@@ -29,11 +29,11 @@ const PropertySearch: React.FC<PropertySearchProps> = ({ onFilterChange }) => {
 
 	return (
 		<div className="flex flex-col gap-5 p-5 mt-5 bg-background-secondary rounded-md relative">
-			<SelectBox
+			{/* <SelectBox
 				title="Property Type"
 				values={['Building', 'Flat', 'Apartment', 'Lands', 'Estate']}
 				onChange={(value) => handleFilterChange('propertyType', value)}
-			/>
+			/> */}
 			<SelectBox
 				title="Price Range"
 				values={[

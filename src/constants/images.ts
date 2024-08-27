@@ -37,6 +37,18 @@ import informationSession from '@/assets/images/informationSession.png';
 import consultation from '@/assets/images/consultation.png';
 import mediation from '@/assets/images/mediation.png';
 import workshop from '@/assets/images/workshop.png';
+import apartment from '@/assets/images/apartment.jpg';
+import buildings from '@/assets/images/building.jpg';
+import buildingconstruction from '@/assets/images/buildingconstruction.jpg';
+import estate from '@/assets/images/estate.jpg';
+import flats from '@/assets/images/flats.jpg';
+import hotels from '@/assets/images/hotels.jpg';
+import land from '@/assets/images/land.jpg';
+import officebuilding from '@/assets/images/officebuilding.jpg';
+import penthouse from '@/assets/images/penthouse.jpg';
+import resturants from '@/assets/images/resturants.jpg';
+import shoppingcenters from '@/assets/images/shoppingcenters.jpg';
+import warehouse from '@/assets/images/warehouse.jpg';
 
 export default {
 	building,
@@ -78,4 +90,16 @@ export default {
 	consultation,
 	mediation,
 	workshop,
+	apartment,
+	buildings,
+	buildingconstruction,
+	estate,
+	flats,
+	hotels,
+	land,
+	officebuilding,
+	penthouse,
+	resturants,
+	shoppingcenters,
+	warehouse,
 };
