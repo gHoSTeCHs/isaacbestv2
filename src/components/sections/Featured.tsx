@@ -51,7 +51,7 @@ const Featured = () => {
 					})
 				);
 
-				setFiles(docsWithImageUrls);
+				setFiles(docsWithImageUrls.slice(0, 3));
 			} catch (error) {
 				setError('Failed to load properties. Please try again later.');
 			} finally {

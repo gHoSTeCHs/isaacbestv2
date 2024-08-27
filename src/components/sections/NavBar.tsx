@@ -30,6 +30,7 @@ const NavBar = () => {
 				<div className="flex justify-between items-center">
 					<Link to="/">
 						<img
+							loading="lazy"
 							src={logo}
 							alt="Logo"
 							className="w-[93px] h-[35px] md:w-[114px] md:h-[35px]"

@@ -36,6 +36,7 @@ const PropertyCard: React.FC<PropertyProps> = ({
 				<div className="embla__container">
 					{images.map((image, index) => (
 						<img
+							loading="lazy"
 							src={image}
 							alt=""
 							key={index}
@@ -45,13 +46,15 @@ const PropertyCard: React.FC<PropertyProps> = ({
 				</div>
 			</div>
 			<div className="flex flex-col gap-4">
-				<div className="">
-					<p className="inline-block bg-background-secondary border border-border rounded-full text-sm md:text-base p-1 px-3">
+				<div className="line-clamp-1">
+					<p className="inline-block bg-background-secondary border border-border rounded-full text-sm md:text-base p-1 px-3 line-clamp-1">
 						{location}
 					</p>
 				</div>
 				<div className="flex flex-col gap-1">
-					<h2 className="text-lg md:text-xl font-semibold">{title}</h2>
+					<h2 className="text-lg md:text-xl font-semibold line-clamp-1">
+						{title}
+					</h2>
 					<p className="text-txt text-sm md:text-base line-clamp-2">
 						{description}
 					</p>

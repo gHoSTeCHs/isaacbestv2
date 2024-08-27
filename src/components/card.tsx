@@ -29,6 +29,7 @@ const Card: React.FC<PropertyProps> = ({
 				<div className="embla__container">
 					{images.map((image) => (
 						<img
+							loading="lazy"
 							src={image}
 							alt=""
 							className="embla__slide w-full h-full object-cover"

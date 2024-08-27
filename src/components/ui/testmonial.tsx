@@ -28,6 +28,7 @@ const Testmonial: React.FC<TestmonialProps> = ({
 			</div>
 			<div className="flex items-center gap-4">
 				<img
+					loading="lazy"
 					src={image}
 					alt={name}
 					className="rounded-full w-12 h-12 object-cover"

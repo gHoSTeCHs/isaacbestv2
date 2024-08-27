@@ -43,7 +43,7 @@ const Hero = () => {
 				<div
 					id="img"
 					className="border border-border rounded-lg overflow-hidden md:border-0">
-					<img src={images.building} alt="" />
+					<img src={images.building} alt="Building image" loading="lazy" />
 				</div>
 				<div>
 					<div className="mt-5 mb-7 md:w-[450px] md:text-center md:flex md:flex-col md:items-center md:jusitfy-center md:gap-2 md:mx-auto md:mt-2 lg:w-auto lg:text-left">

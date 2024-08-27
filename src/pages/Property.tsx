@@ -397,5 +397,5 @@ export default Property;
 // one and half plot of lane => https://youtu.be/SBlqUCrdRUA
 // Two plots of land => https://youtu.be/xJV8WvJRAzY
 // 4 bedroom ensuite duplex => https://youtube.com/shorts/RlMlmjnZ_r0?feature=share
-// 3 Bedroom bungalow => https://youtu.be/ALCpdsZoJKE
-// one storey building => https://youtu.be/7_0DNF6Qe3o
+// 3 Bedroom bungalow => https://youtu.be/ALCpdsZoJKE-
+// one storey building => https://youtu.be/7_0DNF6Qe3o -

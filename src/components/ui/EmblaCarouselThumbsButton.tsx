@@ -17,6 +17,7 @@ export const Thumb: React.FC<PropType> = (props) => {
 			}`}
 			onClick={onClick}>
 			<img
+				loading="lazy"
 				src={image}
 				alt={`Thumbnail for slide ${index + 1}`}
 				className="embla-thumbs__slide__image w-[67px] h-[41px] object-cover rounded-md"
