@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { authLinks, navLinks } from '@/constants/data';
-import logo from '../../assets/icons/logo (2).svg';
+import logo from '../../assets/icons/logo3.svg';
 import Button from '../ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { account } from '@/hooks/appwrite';
@@ -49,14 +49,14 @@ const NavBar = () => {
 							fillRule="evenodd"
 							clipRule="evenodd"
 							d="M0.5 0.875C0.5 0.391751 0.891751 0 1.375 0H20.625C21.1082 0 21.5 0.391751 21.5 0.875C21.5 1.35825 21.1082 1.75 20.625 1.75H1.375C0.891751 1.75 0.5 1.35825 0.5 0.875ZM0.5 7C0.5 6.51675 0.891751 6.125 1.375 6.125H20.625C21.1082 6.125 21.5 6.51675 21.5 7C21.5 7.48325 21.1082 7.875 20.625 7.875H1.375C0.891751 7.875 0.5 7.48325 0.5 7ZM10.125 13.125C10.125 12.6418 10.5168 12.25 11 12.25H20.625C21.1082 12.25 21.5 12.6418 21.5 13.125C21.5 13.6082 21.1082 14 20.625 14H11C10.5168 14 10.125 13.6082 10.125 13.125Z"
-							fill="white"
+							fill="black"
 						/>
 					</svg>
 				</div>
 
 				<div className="hidden md:flex gap-4">
 					{navLinks.map((link) => (
-						<Link to={link.href} key={link.title}>
+						<Link className="font-semibold" to={link.href} key={link.title}>
 							{link.title}
 						</Link>
 					))}
@@ -75,7 +75,7 @@ const NavBar = () => {
 							<Link
 								to={link.href}
 								key={link.title}
-								className="p-4 rounded-md hover:bg-background-primary hover:text-txt">
+								className="p-4 rounded-md font-semibold  hover:bg-background-primary hover:text-txt">
 								{link.title}
 							</Link>
 						))}
@@ -86,7 +86,7 @@ const NavBar = () => {
 									<Link
 										to={link.href}
 										key={link.title}
-										className="p-4 rounded-md hover:bg-background-primary hover:text-txt">
+										className="p-4 font-semibold rounded-md hover:bg-background-primary hover:text-txt">
 										{link.title}
 									</Link>
 								))}
@@ -94,7 +94,7 @@ const NavBar = () => {
 						) : (
 							<button
 								type="button"
-								className="p-4 rounded-md hover:bg-background-primary hover:text-txt"
+								className="p-4 rounded-md font-semibold  hover:bg-background-primary hover:text-txt"
 								onClick={logOut}>
 								Logout
 							</button>

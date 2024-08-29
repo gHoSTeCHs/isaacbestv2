@@ -5,8 +5,16 @@ import Button from '@/components/ui/button';
 import Header from '@/components/ui/header';
 import LinkCard from '@/components/ui/linkcard';
 import { images } from '@/constants';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Contact = () => {
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
+
 	return (
 		<div>
 			<NavBar />

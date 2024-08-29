@@ -47,8 +47,8 @@ export const statistics = [
 
 export const userTestimonials = [
 	{
-		name: 'Wade Warren',
-		location: 'USA, California',
+		name: 'Chinedu Okafor',
+		location: 'Enugu, Enugu State',
 		title: 'Exceptional Service!',
 		description:
 			"Our experience with IsaacBestProperties was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
@@ -56,8 +56,8 @@ export const userTestimonials = [
 		image: images.user1,
 	},
 	{
-		name: 'Emma Johnson',
-		location: 'USA, New York',
+		name: 'Ibrahim Bello',
+		location: 'Kano ,Kano State',
 		title: 'A Seamless Experience!',
 		description:
 			"IsaacBestProperties made the home-buying process seamless and stress-free. Their expertise and support were invaluable. I couldn't be happier with my new home!",
@@ -65,8 +65,8 @@ export const userTestimonials = [
 		image: images.user2,
 	},
 	{
-		name: 'Liam Smith',
-		location: 'USA, Texas',
+		name: 'Tunde Adeyemi',
+		location: 'Lekki, Lagos State',
 		title: 'Highly Professional Team!',
 		description:
 			'The team at IsaacBestProperties was highly professional and attentive. They listened to our needs and found us the perfect property. Thank you very much!',
@@ -74,8 +74,8 @@ export const userTestimonials = [
 		image: images.user3,
 	},
 	{
-		name: 'Sophia Brown',
-		location: 'USA, Florida',
+		name: 'Emeka Nwosu',
+		location: 'Owerri, Imo State',
 		title: 'Above and Beyond!',
 		description:
 			'IsaacBestProperties went above and beyond to help us find our dream home. Their commitment to customer satisfaction is truly commendable!',
@@ -83,8 +83,8 @@ export const userTestimonials = [
 		image: images.user4,
 	},
 	{
-		name: 'James Davis',
-		location: 'USA, Illinois',
+		name: 'Uche Nwachukwu',
+		location: 'Port Harcourt, Rivers State',
 		title: 'Fantastic Service!',
 		description:
 			'I had a fantastic experience working with IsaacBestProperties. They were always available to answer my questions and guided me every step of the way.',
@@ -92,8 +92,8 @@ export const userTestimonials = [
 		image: images.user5,
 	},
 	{
-		name: 'Olivia Wilson',
-		location: 'USA, Washington',
+		name: 'Sadiq Mohammed',
+		location: 'Federal Capital Territory',
 		title: 'Incredible Support!',
 		description:
 			'The support from IsaacBestProperties was incredible. They helped us navigate the market and find a home that fit our budget and needs perfectly.',
@@ -572,5 +572,86 @@ export const OurServices = [
 		ctadescription:
 			'Contact us for any enquiries related to land and property. Our team is ready to assist you.',
 		ctalink: '#',
+	},
+];
+
+interface PropertyType {
+	name: string;
+	image: string;
+	description: string;
+}
+
+export const propertyTypes: PropertyType[] = [
+	{
+		name: 'Building',
+		image: images.buildings,
+		description:
+			'Explore our diverse range of buildings, perfect for residential or commercial use. These structures offer spacious layouts and modern amenities, designed to meet the needs of families and businesses alike. Whether you’re looking for a cozy home or a vibrant workspace, our buildings provide the ideal setting.',
+	},
+	{
+		name: 'Lands',
+		image: images.land,
+		description:
+			'Discover prime land opportunities that offer endless possibilities for development. Whether you envision a private retreat, agricultural use, or a new construction project, our land listings provide the perfect canvas for your dreams. Enjoy the freedom to create your ideal space in a location that suits your lifestyle.',
+	},
+	{
+		name: 'Flat',
+		image: images.flats,
+		description:
+			'Our selection of flats combines convenience and comfort, making them ideal for urban living. With modern designs and easy access to local amenities, these homes are perfect for young professionals and families seeking a vibrant lifestyle. Experience the best of city living in a stylish flat that feels like home.',
+	},
+	{
+		name: 'Building Construction',
+		image: images.buildingconstruction,
+		description:
+			'Partner with us for your building construction needs. We specialize in creating high-quality structures tailored to your specifications. Our experienced team ensures that every project is completed on time and within budget, delivering results that exceed expectations. Let us help you bring your vision to life.',
+	},
+	{
+		name: 'Estate',
+		image: images.estate,
+		description:
+			'Invest in an estate that offers both luxury and space. These expansive properties provide a unique lifestyle with ample room for entertaining, gardening, or simply enjoying nature. Experience the tranquility of estate living while being close to essential amenities and services.',
+	},
+	{
+		name: 'Apartment',
+		image: images.apartment,
+		description:
+			'Our apartments offer a perfect blend of comfort and convenience. With modern layouts and a range of amenities, these homes are designed for those who appreciate a hassle-free lifestyle. Enjoy community living with easy access to shopping, dining, and recreational activities.',
+	},
+	{
+		name: 'Office Buildings',
+		image: images.officebuilding,
+		description:
+			'Discover our portfolio of office buildings that cater to businesses of all sizes. These properties are strategically located to provide easy access for employees and clients alike. Equipped with modern facilities, our office spaces are designed to foster productivity and collaboration.',
+	},
+	{
+		name: 'Shopping Centers/Malls',
+		image: images.shoppingcenters,
+		description:
+			'Explore our shopping centers and malls, designed to attract foot traffic and provide a vibrant shopping experience. These properties feature a diverse mix of retail outlets, dining options, and entertainment venues, making them ideal for investors looking to capitalize on commercial opportunities.',
+	},
+	{
+		name: 'Restaurants',
+		image: images.resturants,
+		description:
+			'Invest in prime restaurant locations that promise high visibility and customer engagement. Our listings feature properties with established clientele and modern facilities, perfect for aspiring restaurateurs or seasoned operators looking to expand their portfolio.',
+	},
+	{
+		name: 'Hotels',
+		image: images.hotels,
+		description:
+			'Our hotel properties offer exceptional investment opportunities in the hospitality sector. With prime locations, luxurious amenities, and a proven track record of success, these hotels are ideal for investors looking to tap into the thriving tourism market.',
+	},
+	{
+		name: 'Warehouses',
+		image: images.warehouse,
+		description:
+			'Explore our warehouse listings that provide ample space for storage and distribution. These properties are strategically located to facilitate logistics and supply chain operations, making them ideal for businesses looking to optimize their operations.',
+	},
+	{
+		name: 'Penthouses',
+		image: images.penthouse,
+		description:
+			'Experience luxury living in our exquisite penthouses, featuring stunning views and high-end finishes. These exclusive properties offer spacious layouts and premium amenities, providing a lifestyle of comfort and elegance in the heart of the city.',
 	},
 ];

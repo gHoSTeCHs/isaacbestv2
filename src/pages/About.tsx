@@ -6,8 +6,15 @@ import AchievementComponent from '@/components/ui/achievement';
 import Header from '@/components/ui/header';
 import ValueComponent from '@/components/ui/value';
 import { Achievements, Values } from '@/constants/data';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const About = () => {
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
 	return (
 		<div className="">
 			<NavBar />

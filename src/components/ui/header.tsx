@@ -33,14 +33,13 @@ const Header: React.FC<HeaderProps> = ({
 					duration: 1,
 					scrollTrigger: {
 						trigger: element,
-						start: 'top 80%', // Start the animation when the top of the element is 80% from the top of the viewport
-						toggleActions: 'play none none reverse', // Play on enter, reverse on leave
+						start: 'top 80%',
+						toggleActions: 'play none none reverse',
 					},
 				}
 			);
 		}
 
-		// Cleanup function to kill ScrollTrigger on unmount
 		return () => {
 			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 		};
@@ -58,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({
 				<g clipPath="url(#clip0_4_250)">
 					<path
 						d="M12 24.0134C18.6274 24.0134 24 18.6408 24 12.0134C24 5.38595 18.6274 0.0134277 12 0.0134277C5.37258 0.0134277 0 5.38595 0 12.0134C0 18.6408 5.37258 24.0134 12 24.0134Z"
-						fill="#666666"
+						fill="blue"
 					/>
 					<path
 						d="M9.53674e-07 36C6.62742 36 12 30.6274 12 24C12 17.3726 6.62742 12 9.53674e-07 12C-6.62742 12 -12 17.3726 -12 24C-12 30.6274 -6.62742 36 9.53674e-07 36Z"
@@ -80,7 +79,7 @@ const Header: React.FC<HeaderProps> = ({
 				<g clipPath="url(#clip1_4_250)">
 					<path
 						d="M35.9998 19.2081C39.9763 19.2081 43.1998 15.9845 43.1998 12.0081C43.1998 8.03162 39.9763 4.80811 35.9998 4.80811C32.0234 4.80811 28.7998 8.03162 28.7998 12.0081C28.7998 15.9845 32.0234 19.2081 35.9998 19.2081Z"
-						fill="#333333"
+						fill="blue"
 					/>
 					<path
 						d="M28.7996 26.4C32.7761 26.4 35.9996 23.1764 35.9996 19.2C35.9996 15.2235 32.7761 12 28.7996 12C24.8232 12 21.5996 15.2235 21.5996 19.2C21.5996 23.1764 24.8232 26.4 28.7996 26.4Z"
@@ -102,7 +101,7 @@ const Header: React.FC<HeaderProps> = ({
 				<g clipPath="url(#clip2_4_250)">
 					<path
 						d="M51.36 15.3635C53.2157 15.3635 54.72 13.8592 54.72 12.0035C54.72 10.1479 53.2157 8.64355 51.36 8.64355C49.5043 8.64355 48 10.1479 48 12.0035C48 13.8592 49.5043 15.3635 51.36 15.3635Z"
-						fill="#333333"
+						fill="blue"
 					/>
 					<path
 						d="M48.0001 18.7198C49.8558 18.7198 51.3601 17.2154 51.3601 15.3598C51.3601 13.5041 49.8558 11.9998 48.0001 11.9998C46.1445 11.9998 44.6401 13.5041 44.6401 15.3598C44.6401 17.2154 46.1445 18.7198 48.0001 18.7198Z"
@@ -129,7 +128,7 @@ const Header: React.FC<HeaderProps> = ({
 						<rect
 							width="14.4"
 							height="14.4"
-							fill="white"
+							fill="blue"
 							transform="translate(28.7998 4.80005)"
 						/>
 					</clipPath>
@@ -137,7 +136,7 @@ const Header: React.FC<HeaderProps> = ({
 						<rect
 							width="6.72"
 							height="6.72"
-							fill="white"
+							fill="blue"
 							transform="translate(48 8.63989)"
 						/>
 					</clipPath>

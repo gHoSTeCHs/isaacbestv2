@@ -7,11 +7,11 @@
 
 @layer base {
 	:root {
-		--background-primary: #141414;
-		--background-secondary: #191919;
-		--primary: #ffffff;
-		--txt: #999999;
-		--btn: #703bf7;
+		--background-primary: #f7f7f7;
+		--background-secondary: #ffffff;
+		--primary: #2d3748;
+		--txt: #718096;
+		--btn: #5a67d8;
 	}
 
 	body {

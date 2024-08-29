@@ -4,8 +4,15 @@ import Footer from '@/components/sections/Footer';
 import NavBar from '@/components/sections/NavBar';
 import Header from '@/components/ui/header';
 import { OurServices } from '@/constants/data';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Services = () => {
+	const { pathname } = useLocation();
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [pathname]);
 	return (
 		<div>
 			<NavBar />

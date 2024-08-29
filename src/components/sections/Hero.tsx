@@ -49,7 +49,7 @@ const Hero = () => {
 					<div className="mt-5 mb-7 md:w-[450px] md:text-center md:flex md:flex-col md:items-center md:jusitfy-center md:gap-2 md:mx-auto md:mt-2 lg:w-auto lg:text-left">
 						<h2
 							id="text"
-							className="text-[28px] font-medium text-primary md:text-4xl lg:text-5xl">
+							className="text-[28px] font-semibold text-primary md:text-4xl lg:text-5xl">
 							Discover Your Dream Property with IsaacBest
 						</h2>
 						<p className="text-[14px] text-txt lg:text-[16px] para">

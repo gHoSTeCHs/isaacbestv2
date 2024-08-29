@@ -1,7 +1,7 @@
 // import { images } from "@/constants";
 import FooterComponent from '../ui/footer';
 import { footerLinks } from '@/constants/data';
-import logo from '../../assets/icons/logo.svg';
+import logo from '../../assets/icons/logo3.svg';
 
 const Footer = () => {
 	return (
