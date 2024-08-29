@@ -1,4 +1,3 @@
-import { images } from '@/constants';
 import Header from '../ui/header';
 import Button from '../ui/button';
 import { Link } from 'react-router-dom';
