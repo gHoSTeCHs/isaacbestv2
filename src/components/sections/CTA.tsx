@@ -5,14 +5,7 @@ import { Link } from 'react-router-dom';
 
 const CTA = () => {
 	return (
-		<div
-			className="border border-border border-l-0 border-r-0"
-			style={{
-				backgroundImage: `url(${images.abstract1}), url(${images.abstract1})`, // Replace with actual image paths
-				backgroundSize: 'cover, cover',
-				backgroundPosition: 'center, center',
-				backgroundRepeat: 'no-repeat, no-repeat',
-			}}>
+		<div className="border border-border border-l-0 border-r-0">
 			<section className="container py-12">
 				<div className="cta flex flex-col justify-center gap-7 md:flex-row lg:justify-between lg:items-center">
 					<div className="max-w-[960px]">
