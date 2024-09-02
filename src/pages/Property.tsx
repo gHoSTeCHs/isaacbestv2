@@ -318,7 +318,7 @@ const Property = () => {
 							<div className="flex flex-col gap-5 mt-5">
 								<div>
 									<a
-										href={`https://wa.me/08035450948?text=Hello!${encodeURIComponent(
+										href={`https://wa.me/+2348035450948?text=Hello!${encodeURIComponent(
 											` I would like to inquire about ${property.title} located at ${property.location}.`
 										)}`}
 										className="flex items-center gap-3">
