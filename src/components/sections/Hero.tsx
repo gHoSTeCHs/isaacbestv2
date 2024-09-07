@@ -43,7 +43,12 @@ const Hero = () => {
 				<div
 					id="img"
 					className="border border-border rounded-lg overflow-hidden md:border-0">
-					<img src={images.building} alt="Building image" loading="lazy" />
+					<img
+						src={images.building}
+						alt="Building image"
+						loading="lazy"
+						className="lg:h-[500px] lg:w-[800px]"
+					/>
 				</div>
 				<div>
 					<div className="mt-5 mb-7 md:w-[450px] md:text-center md:flex md:flex-col md:items-center md:jusitfy-center md:gap-2 md:mx-auto md:mt-2 lg:w-auto lg:text-left">
@@ -54,7 +59,14 @@ const Hero = () => {
 						</h2>
 						<p className="text-[14px] text-txt lg:text-[16px] para">
 							Your journey to finding the perfect property begins here. Explore
-							our listings to find the home that matches your dreams.
+							our listings to find the home that matches your dreams.{' '}
+							<span className="font-bold">
+								{' '}
+								Toronto Junction Mcc/Uratta road Imo state Nigeria.
+							</span>{' '}
+							<span className="font-bold">08035450948</span>,{' '}
+							<span className="font-bold">09068412173</span> Email:
+							<span className="font-bold">isaacamuchie@gmail.com</span>
 						</p>
 					</div>
 					<div className="flex flex-col gap-4 md:flex-row md:w-[400px] md:mx-auto md:items-center md:justify-center lg:w-auto lg:justify-start">
