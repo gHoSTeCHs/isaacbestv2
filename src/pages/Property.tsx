@@ -129,7 +129,7 @@ const Property = () => {
   `);
 
 		window.location.replace(
-			`mailto:kingswatter@gmail.com?subject=${subject}&body=${body}`
+			`mailto:isaacamuchie@gmail.com?subject=${subject}&body=${body}`
 		);
 	};
 

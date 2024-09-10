@@ -41,7 +41,7 @@ const Service: React.FC<ServiceProp> = ({
 					<h1 className="text-xl font-bold ">{ctaheader}</h1>
 					<Button className="rounded-xl">
 						<a
-							href={`mailto: kingswatter@gmail.com?subject=Inquiry%20about%20${encodeURIComponent(
+							href={`mailto:isaacamuchie@gmail.com?subject=Inquiry%20about%20${encodeURIComponent(
 								header
 							)}&body=${encodeURIComponent(
 								`I would like to make an inquiry on your ${header} services`

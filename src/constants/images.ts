@@ -49,7 +49,10 @@ import penthouse from '@/assets/images/penthouse.jpg';
 import resturants from '@/assets/images/resturants.jpg';
 import shoppingcenters from '@/assets/images/shoppingcenters.jpg';
 import warehouse from '@/assets/images/warehouse.jpg';
-
+import sustainability from '@/assets/images/sustainability.png';
+import space_optimization from '@/assets/images/space_optimization.png';
+import design from '@/assets/images/design.png';
+import architecture from '@/assets/images/architecture.png';
 export default {
 	building,
 	user1,
@@ -102,4 +105,8 @@ export default {
 	resturants,
 	shoppingcenters,
 	warehouse,
+	sustainability,
+	space_optimization,
+	design,
+	architecture,
 };

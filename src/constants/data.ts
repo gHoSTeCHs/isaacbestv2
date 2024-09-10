@@ -318,6 +318,41 @@ export const OurServices = [
 		ctalink: '#',
 	},
 	{
+		title: 'Elevate Your Space',
+		description:
+			'Transform your property into a masterpiece with our expert design and architecture services.',
+		subservices: [
+			{
+				title: 'Design Excellence',
+				description:
+					'Unleash the full potential of your property with our innovative design solutions.',
+				image: images.design,
+			},
+			{
+				title: 'Architectural Mastery',
+				description:
+					'Bring your vision to life with our expert architectural services, tailored to your unique needs.',
+				image: images.architecture,
+			},
+			{
+				title: 'Space Optimization',
+				description:
+					'Maximize the functionality and aesthetic of your property with our space optimization expertise.',
+				image: images.space_optimization,
+			},
+			{
+				title: 'Sustainable Solutions',
+				description:
+					"Elevate your property's eco-friendliness and efficiency with our sustainable design and architecture solutions.",
+				image: images.sustainability,
+			},
+		],
+		ctaheader: 'Transform Your Space Today',
+		ctadescription:
+			'Ready to unlock the full potential of your property? Explore our Property Design and Architecture services and let us help you create your dream space.',
+		ctalink: '#',
+	},
+	{
 		title: 'Effortless Property Management',
 		description:
 			"Owning a property should be a pleasure, not a hassle. IsaacBestProperties's Property Management Service takes the stress out of property ownership.",
